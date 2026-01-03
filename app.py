@@ -290,7 +290,7 @@ def create_app(config_name='default'):
             attendance = Attendance(
                 student_id=data['student_id'],
                 course_id=data['course_id'],
-                date=datetime.strptime(data.get('date', datetime.utcnow().strftime('%Y-%m-%d')), '%Y-%m-%d').date(),
+                date=datetime.strptime(data.get('date', date.today().strftime('%Y-%m-%d')), '%Y-%m-%d').date(),
                 status=data['status'],
                 notes=data.get('notes')
             )
