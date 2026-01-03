@@ -31,10 +31,12 @@ def test_school_erp_system():
     print_response(response, "GET / - Home")
     
     # Create a student
+    import time
+    timestamp = int(time.time())
     student_data = {
         "first_name": "Alice",
         "last_name": "Johnson",
-        "email": "alice.johnson@example.com",
+        "email": f"alice.johnson.{timestamp}@example.com",
         "date_of_birth": "2011-03-20",
         "grade_level": "9th Grade",
         "phone": "111-222-3333",
@@ -54,7 +56,7 @@ def test_school_erp_system():
     teacher_data = {
         "first_name": "Robert",
         "last_name": "Brown",
-        "email": "robert.brown@example.com",
+        "email": f"robert.brown.{timestamp}@example.com",
         "phone": "555-987-6543",
         "subject_specialization": "Physics",
         "department": "Science"
@@ -69,7 +71,7 @@ def test_school_erp_system():
     
     # Create a course
     course_data = {
-        "course_code": "PHYS101",
+        "course_code": f"PHYS{timestamp % 1000}",
         "course_name": "Introduction to Physics",
         "description": "Basic physics concepts and principles",
         "credits": 4,
