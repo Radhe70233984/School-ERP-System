@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import datetime, date
 
 db = SQLAlchemy()
 
@@ -12,7 +12,7 @@ class Student(db.Model):
     last_name = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     date_of_birth = db.Column(db.Date, nullable=False)
-    enrollment_date = db.Column(db.Date, default=datetime.utcnow)
+    enrollment_date = db.Column(db.Date, default=date.today)
     grade_level = db.Column(db.String(20), nullable=False)
     phone = db.Column(db.String(20))
     address = db.Column(db.Text)
@@ -52,7 +52,7 @@ class Teacher(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     phone = db.Column(db.String(20))
     subject_specialization = db.Column(db.String(100))
-    hire_date = db.Column(db.Date, default=datetime.utcnow)
+    hire_date = db.Column(db.Date, default=date.today)
     department = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
@@ -117,7 +117,7 @@ class Attendance(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     student_id = db.Column(db.Integer, db.ForeignKey('students.id'), nullable=False)
     course_id = db.Column(db.Integer, db.ForeignKey('courses.id'), nullable=False)
-    date = db.Column(db.Date, nullable=False, default=datetime.utcnow)
+    date = db.Column(db.Date, nullable=False, default=date.today)
     status = db.Column(db.String(20), nullable=False)  # Present, Absent, Late, Excused
     notes = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -145,7 +145,7 @@ class Grade(db.Model):
     assignment_name = db.Column(db.String(200), nullable=False)
     grade_value = db.Column(db.Float, nullable=False)
     max_grade = db.Column(db.Float, default=100.0)
-    grade_date = db.Column(db.Date, default=datetime.utcnow)
+    grade_date = db.Column(db.Date, default=date.today)
     comments = db.Column(db.Text)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

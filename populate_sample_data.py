@@ -6,7 +6,7 @@ This can serve as a template for building frontend applications.
 
 from app import create_app, db
 from models import Student, Teacher, Course, Attendance, Grade
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 def populate_sample_data():
     """Populate the database with sample data"""
@@ -125,9 +125,7 @@ def populate_sample_data():
             for course in courses:
                 # Create attendance for past 5 days
                 for days_ago in range(5):
-                    attendance_date = date.today()
-                    if days_ago > 0:
-                        attendance_date = date(2024, 1, 15 + days_ago)
+                    attendance_date = date.today() - timedelta(days=days_ago)
                     
                     status = "Present" if days_ago < 4 else "Late"
                     
